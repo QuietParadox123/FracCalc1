@@ -88,7 +88,7 @@ public class FracCalc {
    			parser.close();
    		}
     		
-    		//make strings become beautiful numbers
+    		//make strings become beautiful numbers			
     		int w1 = Integer.parseInt(whole1);
     		int w2 = Integer.parseInt(whole2); 
     		int num1 = Integer.parseInt(numerator1); 
@@ -98,11 +98,6 @@ public class FracCalc {
     			return doMath(w1, w2, num1, num2, den1, den2, sign); 
     }
     // TODO: Fill in the space below with any helper methods that you think you will need
-    //finds common Denominator so I can add and subtract 
-    public static void setNum(int w1, int w2, int num1, int num2, int den1, int den2, String sign){
-    	num1 = (num1 * den2);
-    	num2 = (num2 * den1);
-    }
     public static void improperfraction(int w1, int w2, int num1, int num2, int den1, int den2, String sign){
     	if (w1 == 0){
     		num1 = (1 * num1);
@@ -127,16 +122,18 @@ public class FracCalc {
     		//Do the addition!
     	if (sign.equals("+")){
     		improperfraction(w1, w2, num1, num2, den1, den2, sign);
-        	setNum(w1, w2, num1, num2, den1, den2, sign);
 
+    		num1 = (den2 * num1);
+    		num2 = (den1 * num2); 
     		num = (num1 + num2);
-    		den = (den1* den2); 
+    		den = (den1 * den2); 
     		
     		//Do the subtraction! 
     	}else if (sign.equals("-")){
     		improperfraction(w1, w2, num1, num2, den1, den2, sign); 
-        	setNum(w1, w2, num1, num2, den1, den2, sign);
 
+    		num1 = (den2 * num1);
+    		num2 = (den1 * num2);
     		num = (num1 - num2); 
     		den = (den1 * den2); 
 
