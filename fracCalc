@@ -95,58 +95,50 @@ public class FracCalc {
     		int num2 = Integer.parseInt(numerator2);
     		int den1 = Integer.parseInt(denominator1); 
     		int den2 = Integer.parseInt(denominator2);
-    		int commonD = 1; 
-    			return doMath(w1, w2, num1, num2, den1, den2, sign, commonD); 
+    			return doMath(w1, w2, num1, num2, den1, den2, sign); 
     }
     // TODO: Fill in the space below with any helper methods that you think you will need
     //finds common Denominator so I can add and subtract 
-    public static void commonDen(int w1, int w2, int num1, int num2, int den1, int den2, String sign){
-    	//find commonD
-    	int commonD = (den1 * den2);
-    		//multiply num1 by den2 
+    public static void setNum(int w1, int w2, int num1, int num2, int den1, int den2, String sign){
     	num1 = (num1 * den2);
-    		//multiply num2 by den1
     	num2 = (num2 * den1);
-    		//set denominators
-    	den1 = commonD;
-    	den2 = commonD;
-    		//call doMath
-    	doMath(w1, w2, num1, num2, den1, den2, sign, commonD);
     }
     public static void improperfraction(int w1, int w2, int num1, int num2, int den1, int den2, String sign){
     	if (w1 == 0){
-    		w1 = 1; 
+    		num1 = (1 * num1);
     	}
-    	if (w2 == 0){
-    		w2 = 1;
+    	if (w2 ==0){
+    		num1 = (w1 * num1);
     	}
-    	num1 = (w1 * num1); 
-    	num2 = (w2 * num2); 
+    	if (w1 != 0){
+    		num1 = (1 * num1);
+    	}
+    	if (w2 != 0){
+    		num2 = (w2 * num2);
+    	}
     }
     //does the math
    
-    public static String doMath(int w1, int w2, int num1, int num2, int den1, int den2, String sign, int commonD){
+    public static String doMath(int w1, int w2, int num1, int num2, int den1, int den2, String sign){
     	int num = 0;
     	int den = 0; 
     	int whole = 0; 
 
     		//Do the addition!
     	if (sign.equals("+")){
-    		improperfraction(w1, w2, num1, num2, den1, den2, sign); 
-    		if (den1 != den2){
-        		commonDen(w1, w2, num1, num2, den1, den2, sign);
-    		}
+    		improperfraction(w1, w2, num1, num2, den1, den2, sign);
+        	setNum(w1, w2, num1, num2, den1, den2, sign);
+
     		num = (num1 + num2);
-    		den = den1;
+    		den = (den1* den2); 
     		
     		//Do the subtraction! 
     	}else if (sign.equals("-")){
     		improperfraction(w1, w2, num1, num2, den1, den2, sign); 
-    		if (den1 != den2){
-        		commonDen(w1, w2, num1, num2, den1, den2, sign);
-    	}
+        	setNum(w1, w2, num1, num2, den1, den2, sign);
+
     		num = (num1 - num2); 
-    		den = den1; 
+    		den = (den1 * den2); 
 
     		
     		//Do the multiplication
