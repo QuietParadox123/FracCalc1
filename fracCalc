@@ -1,4 +1,4 @@
-package FracCalc;
+package fracCalc;
 import java.io.Console;
 import java.util.Scanner; 
 public class FracCalc {
@@ -107,11 +107,17 @@ public class FracCalc {
     		
     	//Do the addition!
     	if (sign.equals("+")){
-    		if (w1 != 0){ 
+    		if (w1 > 0){ 
     			num1 = (den1 * w1 + num1);
     		}
-    		if (w2 !=0){
+    		if (w2 > 0){
     			num2 = (den2 * w2 + num2); 
+    		}
+    		if (w1 < 0){ 
+    			num1 = (den1 * w1 - num1); 
+    		}
+    		if (w2 < 0){ 
+    			num2 = (den2 * w2 - num2);
     		}
 	    		num1 = (den2 * num1);
 	    		num2 = (den1 * num2); 
@@ -120,11 +126,17 @@ public class FracCalc {
     	
     		//Do the subtraction! 
     	}else if (sign.equals("-")){
-    		if (w1 != 0){ 
+    		if (w1 > 0){ 
     			num1 = (den1 * w1 + num1);
     		}
-    		if (w2 !=0){
+    		if (w2 > 0){
     			num2 = (den2 * w2 + num2); 
+    		}
+    		if (w1 < 0){ 
+    			num1 = (den1 * w1 - num1); 
+    		}
+    		if (w2 < 0){
+    			num2 = (den2 * w2 - num2); 
     		}
     		num1 = (den2 * num1); 
     		num2 = (den1 * num2); 
@@ -134,27 +146,40 @@ public class FracCalc {
     	
     		//Do the multiplication
     	}else if (sign.equals ("*")){ 
-    		if (w1 != 0){ 
+    		if (w1 > 0){ 
     			num1 = (den1 * w1 + num1);
     		}
-    		if (w2 !=0){
+    		if (w2 > 0){
     			num2 = (den2 * w2 + num2); 
+    		}
+    		if (w1 < 0){ 
+    			num1 = (den1 * w1 - num1); 
+    		}
+    		if (w2 < 0){ 
+    			num2 = (den2 * w2 - num2);
     		}
     		num = (num1 * num2); 
     		den = (den1 * den2); 
 
     		//Do the division
     	}else{ 
-    		if (w1 != 0){ 
+    		//improper fraction creator
+    		if (w1 > 0){ 
     			num1 = (den1 * w1 + num1);
     		}
-    		if (w2 !=0){
+    		if (w2 > 0){
     			num2 = (den2 * w2 + num2); 
+    		}
+    		if (w1 < 0){ 
+    			num1 = (den1 * w1 - num1); 
+    		}
+    		if (w2 < 0){ 
+    			num2 = (den2 * w2 - num2);
     		}
     		int oppositeden = num2; 
     		int oppositenum = den2; 
     		num2 = oppositenum; 
-    		den2 = oppositeden; //issue here!!! 
+    		den2 = oppositeden; 
     		num = (num1 * num2); 
     		den = (den1 * den2); 
     	
