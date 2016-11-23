@@ -107,18 +107,18 @@ public class FracCalc {
     		
     	//Do the addition!
     	if (sign.equals("+")){
-    		if (w1 > 0){ 
+    		if (w1 > 0){ //figuring out improper fractions
     			num1 = (den1 * w1 + num1);
     		}
     		if (w2 > 0){
     			num2 = (den2 * w2 + num2); 
     		}
-    		if (w1 < 0){ 
+    		if (w1 < 0){ //if whole is negative section
     			num1 = (den1 * w1 - num1); 
     		}
     		if (w2 < 0){ 
     			num2 = (den2 * w2 - num2);
-    		}
+    		}//math 
 	    		num1 = (den2 * num1);
 	    		num2 = (den1 * num2); 
 	    		num = (num1 + num2);
@@ -176,7 +176,7 @@ public class FracCalc {
     		if (w2 < 0){ 
     			num2 = (den2 * w2 - num2);
     		}
-    		int oppositeden = num2; 
+    		int oppositeden = num2; //setting the num2 and den2 as another variable so they don't set themselves as the same number 
     		int oppositenum = den2; 
     		num2 = oppositenum; 
     		den2 = oppositeden; 
@@ -184,7 +184,14 @@ public class FracCalc {
     		den = (den1 * den2); 
     	
     	}
-    		return (num + "/" + den);
     }
-
+    	public static int greatestcommonden (int num, int den){ 
+    		int buffer = 0; 
+    		while (num != 0 && den != 0){ 
+    			buffer = den; 
+    			den = num % den; 
+    			num = buffer; 
+    	return Math.abs(num + den); 
+    	} 
+    		return (num + "/" + den);
 }
