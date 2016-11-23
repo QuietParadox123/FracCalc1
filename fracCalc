@@ -1,12 +1,12 @@
-package fracCalc;
+package FracCalc;
 import java.io.Console;
 import java.util.Scanner; 
 public class FracCalc {
 
     public static void main(String[] args) {
+
         // TODO: Read the input from the user and call produceAnswer with an equation
     	// do/while loop to keep asking for user input until person types quit
-   
     	Scanner console = new Scanner (System.in);
 	    	String input = console.nextLine();
 			String answer = "";
@@ -14,20 +14,27 @@ public class FracCalc {
     	answer = produceAnswer(input); //figure out the answer that it's looking for in the produceAnswer String 
     	System.out.println(answer); //print said answer
     	console = new Scanner (System.in); 
-    	input = console.nextLine(); //ask again!
-	    		
+    	input = console.nextLine(); //ask again
     }
     console.close(); 
     }
-    
+
     // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
+
     // This function takes a String 'input' and produces the result
+
     //
+
     // input is a fraction string that needs to be evaluated.  For your program, this will be the user input.
+
     //      e.g. input ==> "1/2 + 3/4"
+
     //        
+
     // The function should return the result of the fraction after it has been calculated
+
     //      e.g. return ==> "1_1/4"
+
     public static String produceAnswer(String input){ 
         // TODO: Implement this function to produce the solution to the input
     	// This stuff makes my life easier down in the parsing place. No need to declare them in my if statements
@@ -37,7 +44,6 @@ public class FracCalc {
     			String whole2 = "0"; 
     			String numerator2 = "0";
     			String denominator2 = "1";
-    			
     			//String underscore; 
     			// split the operators and operands
     	Scanner parser = new Scanner(input);
@@ -47,15 +53,16 @@ public class FracCalc {
     	parser.close();
     	//parsing op1 (break it up!)
     	 parser = new Scanner (op1); 
-   
     		if (op1.indexOf("/") == -1 && op1.indexOf("_") == -1) { //whole # case. if / = -1 and if _ = -1
+
     			 whole1 = op1;
+
     			
+
     		} else if (op1.indexOf("_") == -1 && op1.indexOf("/") != -1){//fraction case if _ = -1 and if / = place 
     			parser.useDelimiter("/");
     				 numerator1 = parser.next();
     				 denominator1 = parser.next(); 
-
     		} else { //whole # + fraction if _ = place if / = place
     			parser.useDelimiter("_");
     				 whole1 = parser.next(); 
@@ -63,20 +70,16 @@ public class FracCalc {
     				numerator1 = parser.next();
     					numerator1 = numerator1.substring(1);
     				denominator1= parser.next();
-    				
     		}
     		parser.close(); 
     		//op2 parsing (break it up!(again!))
-    		
     		parser = new Scanner (op2);
     		if (op2.indexOf("/") == -1 && op2.indexOf("_") == -1) { //whole # case. if / = -1 and if _ = -1
    			 whole2 = op2;
-   			
     		} else if (op2.indexOf("_") == -1 && op2.indexOf("/") != -1){//fraction case if _ = -1 and if / = place 
    			parser.useDelimiter("/");
    				 numerator2 = parser.next();
    				 denominator2 = parser.next(); 
-   				
     		} else { //whole # + fraction if _ = place if / = place
    			parser.useDelimiter("_");
    				 whole2 = parser.next(); 
@@ -87,7 +90,6 @@ public class FracCalc {
    				denominator2= parser.next();
    			parser.close();
    		}
-    		
     		//make strings become beautiful numbers			
     		int w1 = Integer.parseInt(whole1);
     		int w2 = Integer.parseInt(whole2); 
@@ -98,62 +100,66 @@ public class FracCalc {
     			return doMath(w1, w2, num1, num2, den1, den2, sign); 
     }
     // TODO: Fill in the space below with any helper methods that you think you will need
-    public static void improperfraction(int w1, int w2, int num1, int num2, int den1, int den2, String sign){
-    	if (w1 == 0){
-    		num1 = (1 * num1);
-    	}
-    	if (w2 ==0){
-    		num1 = (w1 * num1);
-    	}
-    	if (w1 != 0){
-    		num1 = (1 * num1);
-    	}
-    	if (w2 != 0){
-    		num2 = (w2 * num2);
-    	}
-    }
     //does the math
-   
     public static String doMath(int w1, int w2, int num1, int num2, int den1, int den2, String sign){
     	int num = 0;
     	int den = 0; 
-    	int whole = 0; 
-
-    		//Do the addition!
-    	if (sign.equals("+")){
-    		improperfraction(w1, w2, num1, num2, den1, den2, sign);
-
-    		num1 = (den2 * num1);
-    		num2 = (den1 * num2); 
-    		num = (num1 + num2);
-    		den = (den1 * den2); 
     		
+    	//Do the addition!
+    	if (sign.equals("+")){
+    		if (w1 != 0){ 
+    			num1 = (den1 * w1 + num1);
+    		}
+    		if (w2 !=0){
+    			num2 = (den2 * w2 + num2); 
+    		}
+	    		num1 = (den2 * num1);
+	    		num2 = (den1 * num2); 
+	    		num = (num1 + num2);
+    			den = (den1 * den2);
+    	
     		//Do the subtraction! 
     	}else if (sign.equals("-")){
-    		improperfraction(w1, w2, num1, num2, den1, den2, sign); 
-
-    		num1 = (den2 * num1);
-    		num2 = (den1 * num2);
+    		if (w1 != 0){ 
+    			num1 = (den1 * w1 + num1);
+    		}
+    		if (w2 !=0){
+    			num2 = (den2 * w2 + num2); 
+    		}
+    		num1 = (den2 * num1); 
+    		num2 = (den1 * num2); 
     		num = (num1 - num2); 
-    		den = (den1 * den2); 
-
+    		den = (den1 * den2);
     		
+    	
     		//Do the multiplication
     	}else if (sign.equals ("*")){ 
-    		improperfraction(w1, w2, num1, num2, den1, den2, sign); 
+    		if (w1 != 0){ 
+    			num1 = (den1 * w1 + num1);
+    		}
+    		if (w2 !=0){
+    			num2 = (den2 * w2 + num2); 
+    		}
     		num = (num1 * num2); 
     		den = (den1 * den2); 
 
-    
     		//Do the division
     	}else{ 
-    		improperfraction(w1, w2, num1, num2, den1, den2, sign); 
-    		num2 = den2; 
-    		den2 = num2; 
+    		if (w1 != 0){ 
+    			num1 = (den1 * w1 + num1);
+    		}
+    		if (w2 !=0){
+    			num2 = (den2 * w2 + num2); 
+    		}
+    		int oppositeden = num2; 
+    		int oppositenum = den2; 
+    		num2 = oppositenum; 
+    		den2 = oppositeden; //issue here!!! 
     		num = (num1 * num2); 
     		den = (den1 * den2); 
     	
     	}
-    		return (whole + "_" + num + "/" + den);
+    		return (num + "/" + den);
     }
+
 }
